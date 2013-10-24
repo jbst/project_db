@@ -77,6 +77,7 @@
                                                    12 => '家入一桜',
                                                    13 => '寺田祐未',
                                                    14 => '堀川翔平',
+                                                   15 => '栗原恭彦',
                                                 );
                                                 echo $this->Form->select('members', $options, array(
                                                     'multiple' => 'checkbox',
@@ -284,6 +285,14 @@
 		</td>
 		<td><?php echo h($customer['Customer']['estimate']);     ?></td>
 		<td>
+			<?php
+				/** 閲覧ボタン */
+				echo $this->Html->link(
+					__('閲覧'),
+					array('action' => 'show', $customer['Customer']['id']),
+					array('class' => 'btn btn-primary btn-small')
+				);
+			?>
 			<?php
 				/** 更新ボタン */
 				echo $this->Html->link(

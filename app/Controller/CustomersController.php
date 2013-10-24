@@ -476,6 +476,58 @@ class CustomersController extends AppController {
 	}
 
 /**
+ * show method
+ *
+ */
+	public function show($id = null) {
+		$this->Customer->id = $id;
+		if (!$this->Customer->exists()) {
+			throw new NotFoundException(__('Invalid customer'));
+		}
+		if ($this->request->is('post') || $this->request->is('put')) {
+
+		        // 20130525 start
+                        //$mode = implode(",", $this->request->data['Customer']['prefecture_id']); 
+                        //$this->request->data['Customer']['prefecture_id'] = $mode;
+		        // 20130525 end
+		        if ( ($this->request->data['Customer']['output_0']) == '' ) {
+		            $this->data['Customer']['output_0'] == null;
+		        }
+
+                        // UPDATE
+			if ($this->Customer->save($this->request->data)) {
+				$this->Session->setFlash(__('案件情報の登録に成功しました。'), 'Flash/success');
+				$this->redirect(array('action' => 'index'));
+			} else {
+				$this->Session->setFlash(__('案件情報の登録に失敗しました。'));
+			}
+		} else {
+			$this->request->data = $this->Customer->read(null, $id);
+		}
+
+		/** 会社情報を取得する */
+		$companies = $this->Company->find('all');
+                //echo print_r($companies);
+		/** プルダウン用にデータを整える */
+		$companies = set::Combine($companies, '{n}.Company.id', '{n}.Company.company_name');
+
+		/** 技術主担当を取得する */
+		$members = $this->Member->find('all');
+		/** プルダウン用にデータを整える */
+		$members = set::Combine($members, '{n}.Member.id', '{n}.Member.name');
+
+		$this->Customer->id = $id;
+                $customers = $this->Customer->findAllById($id);
+
+		/** Viewに値を渡す */
+		$this->set('company', $companies);
+		$this->set('member',  $members);
+		$this->set('customers',  $customers);
+	}
+
+
+
+/**
  * delete method
  *
  * @param string $id
