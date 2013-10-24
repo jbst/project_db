@@ -114,15 +114,13 @@ class Customer extends AppModel {
 			'fields' => 'id, name',
 			'order' => ''
 		),
-/*
-		'Prefecture' => array(
-			'className' => 'Prefecture',
-			'foreignKey' => 'prefecture_id',
+		'Sale' => array(
+			'className' => 'Sale',
+			'foreignKey' => 'sale_id',
 			'conditions' => '',
-			'fields' => 'id, pref_name',
+			'fields' => 'id, name',
 			'order' => ''
 		),
-*/
 	);
 
 }

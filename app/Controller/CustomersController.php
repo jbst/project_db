@@ -38,6 +38,7 @@ class CustomersController extends AppController {
 		'Member3',
 		'Member4',
 		'Member5',
+		'Sale',
 	);
 
 /**
@@ -402,9 +403,15 @@ class CustomersController extends AppController {
 		/** プルダウン用にデータを整える */
 		$members = set::Combine($members, '{n}.Member.id', '{n}.Member.name');
 
+		/** 営業担当を取得する */
+		//$sales = $this->Sale->find('all');
+		/** プルダウン用にデータを整える */
+		//$sales = set::Combine($sales, '{n}.Sale.id', '{n}.Sale.name');
+
 		/** テンプレートに出力 */
 		$this->set('company', $companies);
 		$this->set('member',  $members);
+		//$this->set('sale',    $sales);
 
 	}
 

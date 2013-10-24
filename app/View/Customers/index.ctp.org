@@ -37,7 +37,7 @@
 
                                                 echo $this->Form->label(
                                                         'company_id',
-                                                        'SIer'
+                                                        '会社名'
                                                 );  
                                                 $options = array(
                                                     1 => 'DELL',
@@ -202,52 +202,24 @@
 	<tr>
 	    <!--<th><?php echo $this->Paginator->sort('customer_cd', __('案件ID'),          array('url' => $searchword));?></th> -->
 		<th><?php echo $this->Paginator->sort('id',          __('ID'),              array('url' => $searchword));?></th>
-		<th><?php echo $this->Paginator->sort('Company.company_name', __('SIer'),   array('url' => $searchword));?></th>
-                <th><?php echo $this->Paginator->sort('kana',        __('END'),             array('url' => $searchword));?></th>
 		<th><?php echo $this->Paginator->sort('name',        __('案件名'),          array('url' => $searchword));?></th>
-
-                <th><?php echo $this->Paginator->sort('Sale.name',   __('営業'),            array('url' => $searchword));?></th>
-            <!--<th><?php echo $this->Paginator->sort('Division.name',  __('事業部'),       array('url' => $searchword));?></th> -->
+            <!--<th><?php echo $this->Paginator->sort('kana',        __('END'),     array('url' => $searchword));?></th> -->
+		<th><?php echo $this->Paginator->sort('Company.company_name', __('会社名'), array('url' => $searchword));?></th>
 		<th><?php echo $this->Paginator->sort('Member.name', __('技術担当'),        array('url' => $searchword));?></th>
-
-		<th><?php echo $this->Paginator->sort('status',      __('Status'),          array('url' => $searchword));?></th>
-		<th><?php echo $this->Paginator->sort('type',        __('形態'),            array('url' => $searchword));?></th>
-		<th><?php echo $this->Paginator->sort('progress',    __('進捗'),            array('url' => $searchword));?></th>
-		<th><?php echo $this->Paginator->sort('period_start',__('開始'),            array('url' => $searchword));?></th>
-		<th><?php echo $this->Paginator->sort('period_end',  __('終了'),            array('url' => $searchword));?></th>
-
-		<!--<th><?php echo $this->Paginator->sort('sagyo',   __('作業'),            array('url' => $searchword));?></th> -->
-		<!--<th><?php echo $this->Paginator->sort('output',  __('成果物'),          array('url' => $searchword));?></th> -->
+		<th><?php echo $this->Paginator->sort('sagyo',       __('作業'),            array('url' => $searchword));?></th>
+		<th><?php echo $this->Paginator->sort('output',      __('成果物'),          array('url' => $searchword));?></th>
 		<th><?php echo $this->Paginator->sort('estimate',    __('見積金額(万円)'),  array('url' => $searchword));?></th>
 		<th class="actions"><?php echo __('更新削除');?></th>
 	</tr>
 	<?php
 		foreach ($customers as $customer):
-
-/*
-                $tmp = $customer['Customer']['name'];
-                if(strstr($tmp, 'XXX')) {
-                    echo '<tr bgcolor="#EE0000">';
-                }
-                else {
-                    echo '<tr>';
-                }
-*/
-        ?>
-
-        <tr>
-
+	?>
+	<tr>
 	   <!--	<td><?php echo h($customer['Customer']['customer_cd']);  ?></td> -->
-		<td><?php echo h($customer['Customer']['id']);           ?></td>
-		<td><?php echo h($customer['Company' ]['company_name']); ?></td> <!-- SIer   -->
-                <td><?php echo h($customer['Customer']['kana']);         ?></td> <!-- END    -->
-		<td><?php echo h($customer['Customer']['name']);         ?></td> <!-- 案件名 -->
-
-		<td><?php echo h($customer['Sale' ]['name']);            ?></td> <!-- 営業 --> 
-
-		<!--<td>< //?php echo h($customer['Division' ]['name']);     ?></td> --> <!-- 事業部 --> 
-		<!--<td>< //?php echo h($customer['Division2']['name']);     ?></td> --> <!-- 事業部 --> 
-		<!--<td>< //?php echo h($customer['Division3']['name']);     ?></td> --> <!-- 事業部 --> 
+		<td><?php echo h($customer['Customer']['id']);          ?></td>
+		<td><?php echo h($customer['Customer']['name']);         ?></td>
+           <!-- <td><?php echo h($customer['Customer']['kana']);         ?></td> -->
+		<td><?php echo h($customer['Company' ]['company_name']); ?></td>
 
 		<td><?php echo h($customer['Member'  ]['name']);         ?></br>
 		    <?php
@@ -270,14 +242,47 @@
 		    ?>
 		</td>
 
-		<!--<td><?// php echo h($customer['Customer']['sagyo_15']);        ?></br> -->
-		<!--<td><?// php echo h($customer['Customer']['output_15']);       ?></br> -->
+		<td><?php echo h($customer['Customer']['sagyo_15']);       ?></br>
+		    <?php 
+		        if ( isset($customer['Customer']['sagyo_16'] ) && ($customer['Customer']['sagyo_16']) != '' ) { 
+		            echo h($customer['Customer']['sagyo_16']); 
+		            echo '<br/>';
+	                } 
+		        if ( isset($customer['Customer']['sagyo_17'] ) && ($customer['Customer']['sagyo_17']) != '' ){ 
+		            echo h($customer['Customer']['sagyo_17']); 
+		            echo '<br/>';
+	                } 
+		        if ( isset($customer['Customer']['sagyo_18'] ) && ($customer['Customer']['sagyo_18']) != '' ){ 
+		            echo h($customer['Customer']['sagyo_18']); 
+		            echo '<br/>';
+	                } 
+		        if ( isset($customer['Customer']['sagyo_19'] ) && ($customer['Customer']['sagyo_19']) != '' ){ 
+		            echo h($customer['Customer']['sagyo_19']); 
+		            echo '<br/>';
+	                } 
+		    ?>
+		</td>
 
-		<td><?php echo h($customer['Customer']['status'  ]);     ?></td>
-		<td><?php echo h($customer['Customer']['type'    ]);     ?></td>
-		<td><?php echo h($customer['Customer']['progress']) . '%';     ?></td>
-		<td><?php echo h($customer['Customer']['period_start']); ?></td>
-		<td><?php echo h($customer['Customer']['period_end'  ]); ?></td>
+		<td><?php echo h($customer['Customer']['output_15']);       ?></br>
+		    <?php 
+		        if ( isset($customer['Customer']['output_16'] ) && ($customer['Customer']['output_16']) != '' ) { 
+		            echo h($customer['Customer']['output_16']); 
+		            echo '<br/>';
+	                } 
+		        if ( isset($customer['Customer']['output_17'] ) && ($customer['Customer']['output_17']) != '' ){ 
+		            echo h($customer['Customer']['output_17']); 
+		            echo '<br/>';
+	                } 
+		        if ( isset($customer['Customer']['output_18'] ) && ($customer['Customer']['output_18']) != '' ){ 
+		            echo h($customer['Customer']['output_18']); 
+		            echo '<br/>';
+	                } 
+		        if ( isset($customer['Customer']['output_19'] ) && ($customer['Customer']['output_19']) != '' ){ 
+		            echo h($customer['Customer']['output_19']); 
+		            echo '<br/>';
+	                } 
+		    ?>
+		</td>
 		<td><?php echo h($customer['Customer']['estimate']);     ?></td>
 		<td>
 			<?php
