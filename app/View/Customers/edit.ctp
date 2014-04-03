@@ -484,7 +484,7 @@
                      /** 進捗 */
                      echo $this->Form->label(
                          'progress',
-                         '<font color="red">*</font> 進捗',
+                         '<font color="red">*</font> 進捗 (%)',
                          array('class' => 'control-label', 'for' => 'progress')
                      );
                      echo $this->Form->input(

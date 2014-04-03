@@ -252,7 +252,7 @@
                     <hr>
                     <br><font size=2 class="muted">進捗</font>
                     <br>
-                    <br><?php echo h($customer['Customer']['progress']); ?>
+                    <br><?php echo h($customer['Customer']['progress']) . '%'; ?>
                     <hr>
                     <br><font size=2 class="muted">開始</font>
                     <br>
