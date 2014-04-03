@@ -1,76 +1,55 @@
-<div class="sales index">
-	<h2><?php echo __('売上一覧');?></h2>
-	<?php
-		/** PDFボタン */
-		echo $this->Html->link(
-			__('帳票出力'),
-			array('action' => 'pdf'),
-			array('target' => '_blank', 'class' => 'btn')
-		);
-	?>
-	<br><br>
-	<table cellpadding="0" cellspacing="0" class="table">
-	<tr>
-		<th><?php echo __('顧客名'); ?></th>
-		<th><?php echo __('会社名'); ?></th>
-		<th><?php echo __('住所'); ?></th>
-		<th><?php echo __('製品名'); ?></th>
-		<th><?php echo __('購入日'); ?></th>
-		<th><?php echo __('個数'); ?></th>
-		<th><?php echo __('単価'); ?></th>
-		<th><?php echo __('金額'); ?></th>
-	</tr>
-	<?php
-		/** 取得したデータ分ループする */
-		foreach ($sales as $sale):
-	?>
-	<tr>
-		<td>
-			<?php echo h($sale['Customer']['name']); ?>
-		</td>
-		<td>
-			<?php echo h($sale['Company']['company_name']); ?>
-		</td>
-		<td>
-			<?php echo h($sale['Customer']['address1']); ?>
-		</td>
-		<td>
-			<?php echo h($sale['Product']['product_name']); ?>
-		</td>
-		<td><?php echo h($sale['Sale']['purchase_date']); ?></td>
-		<td><?php echo h($sale['Sale']['amount']); ?></td>
-		<td>
-			<?php
-				/** 金額フォーマットに整形 */
-				echo h(
-					$this->Number->format(
-						h($sale['Product']['unit_price']),
-						array(
-						    'places' => 0,
-						    'before' => '￥',
-						    'thousands' => ','
-						)
-					)
-				);
-			?>
-		</td>
-		<td>
-			<?php
-				/** 金額フォーマットに整形 */
-				echo h(
-					$this->Number->format(
-						h($sale['Sale']['money']),
-						array(
-						    'places' => 0,
-						    'before' => '￥',
-						    'thousands' => ','
-						)
-					)
-				);
-			?>
-		</td>
-	</tr>
-<?php endforeach; ?>
-	</table>
+<div class="users index">
+    <h2><?php echo __('営業担当');?></h2>
+    <table cellpadding="0" cellspacing="0">
+        <tr>
+            <th><?php echo $this->Paginator->sort('id');?>  </th>
+            <th><?php echo $this->Paginator->sort('name');?></th>
+            <th class="actions"><?php echo __('Email');?>   </th>
+            <th class="actions"><?php echo __('Actions');?> </th>
+        </tr>
+        <?php foreach ($sales as $sale): ?>
+        <tr>
+            <td><?php echo h($sale['Sale']['id']  ); ?>&nbsp;</td>
+            <td><?php echo h($sale['Sale']['name']); ?>&nbsp;</td>
+            <td><?php echo h($sale['Sale']['kana']); ?>&nbsp;</td>
+            <td>
+                <?php
+                    /** 編集ボタン */
+                    echo $this->Html->link(
+                        __('編集'),
+                        array('action' => 'edit', $sale['Sale']['id']),
+                        array('class' => 'btn btn-primary btn-small')
+                    );
+                ?>
+            </td>
+        </tr>
+        <?php endforeach; ?>
+    </table>
+    <p>
+
+    <?php
+        echo $this->Paginator->counter(array(
+            'format' => __('Page {:page} of {:pages}, showing {:current} records out of {:count} total, starting on record {:start}, ending on {:end}')
+        ));
+    ?>
+    </p>
+
+    <div class="paging">
+    <?php
+        echo $this->Paginator->prev('< ' . __('previous'), array(), null, array('class' => 'prev disabled'));
+        echo $this->Paginator->numbers(array('separator' => ''));
+        echo $this->Paginator->next(__('next') . ' >', array(), null, array('class' => 'next disabled'));
+    ?>
+    </div>
 </div>
 
+<div class="actions">
+    <br>
+    <?php
+        echo $this->Html->link(
+            __('追加'),
+           array('action' => 'add'),
+           array('class' => 'btn btn-primary btn-small')
+        );
+    ?>
+</div>

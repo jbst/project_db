@@ -16,7 +16,7 @@
  * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
  
-$cakeDescription = __d('cake_dev', '過去案件検索ツール');
+$cakeDescription = __d('cake_dev', '過去案件検索');
 ?>
 <!DOCTYPE html>
 <html>
@@ -88,7 +88,12 @@ $cakeDescription = __d('cake_dev', '過去案件検索ツール');
 						<li>&nbsp;</li>
 		    	          		<li><?php echo $this->Html->link( __('リセット'), array( 'controller' => 'customers', 'action' => 'index', 't' => '1')); ?> </li>
 					-->
-						<li><?php echo $this->Html->link(__('ログアウト'), array('controller' => 'users', 'action' => 'logout')); ?></li>
+						<li><?php echo $this->Html->link(__('技術担当'), array('controller'   => 'members',   'action' => 'index')); ?></li>
+						<li><?php echo $this->Html->link(__('営業担当'), array('controller'   => 'sales',     'action' => 'index')); ?></li>
+						<li><?php echo $this->Html->link(__('SIer'),     array('controller'   => 'companies', 'action' => 'index')); ?></li>
+						<li><?php echo $this->Html->link(__('ユーザー'), array('controller'   => 'users',     'action' => 'index')); ?></li>
+						<li><a href="../../../../../wiki/index.php" target="_blank">Wiki</a></li>
+						<li><?php echo $this->Html->link(__('ログアウト'), array('controller' => 'users',     'action' => 'logout'));?></li>
 					</ul>
 					<?php // echo $this->element('menu'); ?>
 				</div>

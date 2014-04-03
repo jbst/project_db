@@ -45,16 +45,16 @@ class Company extends AppModel {
  */
 	public $hasMany = array(
 		'Customer' => array(
-			'className' => 'Customer',
-			'foreignKey' => 'company_id',
-			'dependent' => false,
-			'conditions' => '',
-			'fields' => '',
-			'order' => '',
-			'limit' => '',
-			'offset' => '',
-			'exclusive' => '',
-			'finderQuery' => '',
+			'className'    => 'Customer',
+			'foreignKey'   => 'company_id',
+			'dependent'    => false,
+			'conditions'   => '',
+			'fields'       => '',
+			'order'        => '',
+			'limit'        => '',
+			'offset'       => '',
+			'exclusive'    => '',
+			'finderQuery'  => '',
 			'counterQuery' => ''
 		)
 	);
